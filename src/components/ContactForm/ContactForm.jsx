@@ -2,8 +2,8 @@ import { Form, ErrorMessage, LabelText, Button } from './ContactForm.styles';
 import { Formik, Field } from 'formik';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
-import { getContacts } from '../../redux/selectors';
+import { getContacts } from 'redux/contacts/contactsSelectors';
+import { addContact } from 'redux/contacts/contactsOperations';
 import * as yup from 'yup';
 import 'yup-phone';
 

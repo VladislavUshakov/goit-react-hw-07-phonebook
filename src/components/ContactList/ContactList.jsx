@@ -1,10 +1,19 @@
 import { ContactItem } from 'components/ContactItem';
 import PropTypes from 'prop-types';
 import { List, Title } from './ContactList.styles';
-import { useSelector } from 'react-redux';
-import { getContacts, getFilter } from '../../redux/selectors';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilter } from 'redux/filter/filterSelectors';
+import { getContacts } from 'redux/contacts/contactsSelectors';
+import { fetchContacts } from 'redux/contacts/contactsOperations';
 
 export const ContactList = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter).toLowerCase();
   const filteredContacts = contacts.filter(contact => {
