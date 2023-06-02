@@ -5,28 +5,28 @@ const pendingReducer = state => {
   state.isLoading = true;
 };
 
-const rejectedReducer = ({ isLoading, error }, { payload }) => {
-  isLoading = false;
-  error = payload;
+const rejectedReducer = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
 };
 
-const fetchContactsReducer = ({ isLoading, items, error }, { payload }) => {
-  isLoading = false;
-  items = payload;
-  error = null;
+const fetchContactsReducer = (state, { payload }) => {
+  state.isLoading = false;
+  state.items = payload;
+  state.error = null;
 };
 
-const addContactReducer = ({ isLoading, items, error }, { payload }) => {
-  isLoading = false;
-  items.push(payload);
-  error = null;
+const addContactReducer = (state, { payload }) => {
+  state.isLoading = false;
+  state.items.push(payload);
+  state.error = null;
 };
 
-const removeContactReducer = ({ isLoading, items, error }, { payload }) => {
-  isLoading = false;
-  const index = items.findIndex(contact => contact.id === payload.id);
-  items.splice(index, 1);
-  error = null;
+const removeContactReducer = (state, { payload }) => {
+  state.isLoading = false;
+  const index = state.items.findIndex(contact => contact.id === payload.id);
+  state.items.splice(index, 1);
+  state.error = null;
 };
 
 const contactsSlice = createSlice({
