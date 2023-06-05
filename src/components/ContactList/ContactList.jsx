@@ -4,7 +4,7 @@ import { List, Title } from './ContactList.styles';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilter } from 'redux/filter/filterSelectors';
-import { getContacts } from 'redux/contacts/contactsSelectors';
+import { selectContacts } from 'redux/contacts/contactsSelectors';
 import { fetchContacts } from 'redux/contacts/contactsOperations';
 
 export const ContactList = () => {
@@ -14,7 +14,7 @@ export const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const filter = useSelector(getFilter).toLowerCase();
   const filteredContacts = contacts.filter(contact => {
     const lowerName = contact.name.toLowerCase();
